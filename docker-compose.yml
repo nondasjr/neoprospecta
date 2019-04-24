@@ -1,0 +1,56 @@
+version: '2'
+services:
+    web:
+        restart: always
+        build:
+            context: .
+            dockerfile: neoprospecta.dockerfile
+        container_name: django_neoprospecta
+        command: bash -c "python manage.py collectstatic --noinput && gunicorn neoprospecta.wsgi:application -w 4 -b :8000 --timeout 400 --max-requests 150"
+        volumes:
+            - .:/code
+        networks:
+            - neoprospecta-network
+
+    nginx:
+        restart: always
+        build:
+            context: ./nginx
+        container_name: nginx_neoprospecta
+        expose:
+            - '80'
+        ports:
+            - '80:80'
+            - '443:443'
+        networks:
+            - neoprospecta-network
+        volumes_from:
+            - web
+
+    default_worker:
+        build:
+            context: .
+            dockerfile: neoprospecta.dockerfile
+        hostname: default
+        container_name: neoprospecta_default_worker
+        command: bash -c "python manage.py rqworker"
+        volumes:
+            - .:/code
+        networks:
+            - neoprospecta-network
+
+    redis:
+        restart: always
+        image: 'redis'
+        container_name: redis_neoprospecta
+        expose:
+            - '6379'
+        ports:
+            - '6379:6379'
+        networks:
+            - neoprospecta-network
+
+
+networks:
+    neoprospecta-network:
+        driver: bridge

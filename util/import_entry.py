@@ -1,10 +1,6 @@
-# import os, sys
-# sys.path.append(os.path.join(os.path.dirname(__file__), 'neoprospecta'))
-# from django.core.wsgi import get_wsgi_application
 import urllib.request
 import gzip
-# os.environ['DJANGO_SETTINGS_MODULE'] = 'neoprospecta.settings'
-# application = get_wsgi_application()
+
 
 from neoprospecta.biology.models import Entry, Specie, Kingdom
 from neoprospecta.parameter.models import EntryParameter

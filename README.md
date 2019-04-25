@@ -37,9 +37,9 @@ Com o virtualenv ativado:
 python manage.py rqworker
 ```
 Em /admin/parameter/entryparameter/
-Selecione o parametro desejado e em ação solicite o processamento.
+Você pode configurar o paramentro como url e volume de dados desejado, após selecione o parametro desejado e em ação solicite o processamento.
 
-O processamento pode ser gerado também pelo console via comando
+O processamento pode ser gerado também pelo console via comando, o sistema irá considerar os parametros definidos para a url e volume de dados.
 
 ```
 Com o virtualenv ativado:

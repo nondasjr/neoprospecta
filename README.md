@@ -6,13 +6,14 @@ Esse código foi desenvolvido pensando na realização do teste a ser apresentad
 Consiste no Download de um arquivo, descompactação e processamento dos dados, exibição no template e manipulação dos mesmos.
 
 Foi utilizado como tecnologia:
+```
 Python 3.7
 Django 2.2
 django-rq 2.0
 djangorestframework 3.9.2
 redis 3.2.1
-docker
-
+docker (opcional)
+```
 A versão web pode ser acessada em:
 
 ``` http://nondasjr.pythonanywhere.com ```
